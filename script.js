@@ -83,7 +83,10 @@ calcButtons.forEach((button) =>{
         numberText = button.textContent.toString()
         displayString = displayString.concat(numberText)
         display.textContent = displayString
-        activeOperatorButton.classList.remove("active")
+        if (activeOperatorButton !== "") {
+            activeOperatorButton.classList.remove("active")
+        }
+
 
     })
 
@@ -134,7 +137,9 @@ operatorButtons.forEach((button) =>{
             displayValueTwo = ""
             displayString = ""
             operator = ""
-            activeOperatorButton.classList.remove("active")
+            if (activeOperatorButton !== "") {
+                activeOperatorButton.classList.remove("active")
+            }
             activeOperatorButton = ""
         }
     })
