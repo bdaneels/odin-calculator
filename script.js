@@ -10,7 +10,11 @@ const subtract = function(a, b) {
 };
 
 const divide = function (a, b) {
-    return a / b
+    if (b === 0) {
+        return "You can't divide by 0. Press clear"
+    }
+    else {return a / b}
+
 }
 const sum = function(array) {
     let result = 0
@@ -63,9 +67,11 @@ let operator = ""
 let displayValueOne = ""
 let displayValueTwo = ""
 let clearValue = false
+let activeOperatorButton = ""
 
-
+const operatorButtons = document.querySelectorAll(".button-operator");
 const calcButtons = document.querySelectorAll(".button-number");
+
 calcButtons.forEach((button) =>{
     button.addEventListener('click', () =>{
 
@@ -77,18 +83,33 @@ calcButtons.forEach((button) =>{
         numberText = button.textContent.toString()
         displayString = displayString.concat(numberText)
         display.textContent = displayString
+        activeOperatorButton.classList.remove("active")
 
     })
 
 
 })
 
-const operatorButtons = document.querySelectorAll(".button-operator");
+
 operatorButtons.forEach((button) =>{
     button.addEventListener('click', () =>{
-        if (button.textContent !== "=") {
+        if (button.textContent !== "=" && button.textContent !== "Delete"
+            && button.textContent !== "Clear" ) {
             operator = button.textContent
         }
+
+        if (button.textContent !=="=" && button.textContent !== "Delete" &&
+        button.textContent !=="Clear"){
+            button.classList.toggle("active")
+            activeOperatorButton = button
+        }
+
+        if(button.id === "delete") {
+            display.textContent = display.textContent.slice(0,-1)
+            displayValueTwo = display.textContent
+        }
+
+
 
         if (displayValueOne === "") {
             displayValueOne = display.textContent
@@ -102,9 +123,19 @@ operatorButtons.forEach((button) =>{
         if (button.id === "calculate"){
             console.log(displayValueOne, displayValueTwo, operator)
             let result = operate(operator, displayValueOne, displayValueTwo)
-            display.textContent = result
-            displayValueOne = result
+            display.textContent = result;
+            displayValueOne = result;
 
+        }
+
+        if(button.id === "clear") {
+            display.textContent = "0"
+            displayValueOne = ""
+            displayValueTwo = ""
+            displayString = ""
+            operator = ""
+            activeOperatorButton.classList.remove("active")
+            activeOperatorButton = ""
         }
     })
 
