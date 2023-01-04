@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+html, body{
+    font-family: Roboto, sans-serif;
+    margin:0;
+    height: 100%;
+}
+
+.main{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    height: 100%;
+    margin:0;
+}
+
+.calculator-container{
+    border-radius: 5px;
+    border-color: black;
+    border-style: solid;
+    padding: 10px;
+    width: 220px;
+    height: 203px;
+}
+
+.display{
+    display: flex;
+    justify-content: right;
+    border-radius: 5px;
+    border-color: black;
+    border-style: solid;
+    background-color: white;
+    width: auto;
+    height: 30px;
+    margin: 1px;
+    align-items: center;
+    padding-right: 5px;
+}
+
+.calculator-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.button-row-container{
+    margin-top: 15px;
+
+}
+
+.button-row{
+    flex-direction: row;
+    display: flex;
+    justify-content: space-evenly;
+    padding: 1px;
+
+}
+.button-number{
+    display: flex;
+    justify-content: center;
+    border-radius: 5px;
+    border-color: black;
+    border-style: solid;
+    background-color: lightgray;
+    width: 50px;
+    height: 30px;
+    margin: 1px;
+    align-items: center;
+
+}
+
+.button-operator{
+    display: flex;
+    justify-content: center;
+    border-radius: 5px;
+    border-color: black;
+    border-style: solid;
+    background-color: gray;
+    width: 50px;
+    height: 30px;
+    margin: 1px;
+    align-items: center;
+}
+
+.button-calculate{
+    background-color: dodgerblue;
+    color: white;
+}
