@@ -68,9 +68,12 @@ let displayValueOne = ""
 let displayValueTwo = ""
 let clearValue = false
 let activeOperatorButton = ""
+let firstCalc = true
 
 const operatorButtons = document.querySelectorAll(".button-operator");
 const calcButtons = document.querySelectorAll(".button-number");
+
+// page functionality
 
 calcButtons.forEach((button) =>{
     button.addEventListener('click', () =>{
@@ -99,28 +102,38 @@ operatorButtons.forEach((button) =>{
         if (button.textContent !== "=" && button.textContent !== "Delete"
             && button.textContent !== "Clear" ) {
             operator = button.textContent
+
         }
 
         if (button.textContent !=="=" && button.textContent !== "Delete" &&
         button.textContent !=="Clear"){
+            if (activeOperatorButton !== button) {
+                operatorButtons.forEach((button) => {
+                    button.classList.remove("active")
+                })
+            }
             button.classList.toggle("active")
             activeOperatorButton = button
+
         }
-
-        if(button.id === "delete") {
-            display.textContent = display.textContent.slice(0,-1)
-            displayValueTwo = display.textContent
-        }
-
-
-
-        if (displayValueOne === "") {
+        if (firstCalc && button.textContent !== "=" && button.textContent !== "Delete"
+        && button.textContent !== "Clear") {
             displayValueOne = display.textContent
             clearValue = true
+            firstCalc = false
         }
         else {
             displayValueTwo = display.textContent
             clearValue = true
+        }
+
+        if(button.id === "delete" && firstCalc === true) {
+            display.textContent = display.textContent.slice(0,-1)
+            displayValueOne = display.textContent
+
+        } else if(button.id === "delete") {
+            display.textContent = display.textContent.slice(0,-1)
+            displayValueTwo = display.textContent
         }
 
         if (button.id === "calculate"){
@@ -137,8 +150,11 @@ operatorButtons.forEach((button) =>{
             displayValueTwo = ""
             displayString = ""
             operator = ""
-            if (activeOperatorButton !== "") {
-                activeOperatorButton.classList.remove("active")
+            firstCalc = true
+            if (activeOperatorButton !== "") { operatorButtons.forEach((button) => {
+                button.classList.remove("active")
+            })
+
             }
             activeOperatorButton = ""
         }
